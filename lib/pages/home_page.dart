@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:url_shortener/common/buttons.dart';
-import 'package:url_shortener/common/color_codes.dart';
-import 'package:url_shortener/common/custom_shape.dart';
-import 'package:url_shortener/common/custom_text_field_widget.dart';
-import 'package:url_shortener/common/text_styles.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-  final TextEditingController _controller = TextEditingController();
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
+import '../common/shorter_widget.dart';
+import '../common/color_codes.dart';
+import '../common/text_styles.dart';
+import '../controllers/shorten_link_controller.dart';
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final _controller = Get.find<ShortenLinkController>();
+
+  final _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _textEditingController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: const Color(0xfff0f1f6),
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -57,36 +69,11 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Container(
-                    width: size.width,
-                    height: size.height * 0.245,
-                    color: mainPurple,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-
-                        //TODO:Add Shape here colo code ----> #4b3f6b
-
-                        CustomTextField(
-                          color: Colors.white,
-                          hintText: "Shorten a link here...",
-                          radius: 7,
-                          width: size.width * 0.8,
-                        ),
-                        CustomButton(
-                          width: size.width * 0.8,
-                          buttonText: "SHORTEN IT!",
-                          height: size.height * 0.06,
-                          onPressed: () {},
-                          buttonColor:  mainCyan,
-                          textColor: Colors.white,
-                          radius: 7,
-                        ),
-                      ],
-                    )),
-              ),
+              ShorterWidget(
+                textEditingController: _textEditingController,
+                textFormFieldKey: _formKey,
+                shortenLinkController: _controller,
+              )
             ],
           ),
         ),

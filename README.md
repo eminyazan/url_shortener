@@ -15,5 +15,4 @@
 ### Coding
 
 #### I use GetX for state management, Hive for local database http package for http requests.
-#### I'm waiting for your responses have a good day
 

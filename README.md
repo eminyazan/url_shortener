@@ -1,8 +1,6 @@
 # URL shortener app
 
-#### Url shortener is a Flutter application. You can download the apk file from the link below.
-
-#### - [Download URL Shortener](https://drive.google.com/file/d/1vbf_FJP9aQhYndIT299RvGehvJh7iK-x/view?usp=sharing)
+#### - Watch usage video from [here](https://www.linkedin.com/feed/update/urn:li:activity:6928252224716357632?utm_source=share&utm_medium=member_desktop)
 
 ## Usage
 
